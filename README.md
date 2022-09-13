@@ -1,4 +1,4 @@
-[![GitHub Release](https://img.shields.io/github/release/Vaskivskyi/aiochroma.svg?style=for-the-badge&color=blue)](https://github.com/Vaskivskyi/aiochroma/releases) [![License](https://img.shields.io/github/license/Vaskivskyi/aiochroma.svg?style=for-the-badge&color=yellow)](LICENSE)
+[![GitHub Release](https://img.shields.io/github/release/Vaskivskyi/aiochroma.svg?style=for-the-badge&color=blue)](https://github.com/Vaskivskyi/aiochroma/releases) [![License](https://img.shields.io/github/license/Vaskivskyi/aiochroma.svg?style=for-the-badge&color=yellow)](LICENSE)<br/>
 ![Downloads](https://img.shields.io/pypi/dm/aiochroma?style=for-the-badge&color=blue) ![Commit activity](https://img.shields.io/github/commit-activity/m/vaskivskyi/aiochroma.svg?style=for-the-badge&color=yellow)<a href="https://www.buymeacoffee.com/vaskivskyi" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" style="height: 28px !important;" align="right" /></a>
 
 ## AIOChroma
