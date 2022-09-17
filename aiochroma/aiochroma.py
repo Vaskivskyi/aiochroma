@@ -42,7 +42,11 @@ class AIOChroma:
     """AIOChroma class"""
 
     def __init__(
-        self, host: str, targets: list["str"], layout: str, session: aiohttp.ClientSession | None = None
+        self,
+        host: str,
+        targets: list["str"],
+        layout: str,
+        session: aiohttp.ClientSession | None = None,
     ):
         """Initialize AIOChroma module"""
 
@@ -256,6 +260,14 @@ class AIOChroma:
     ) -> None:
         """Send a key sequence"""
 
+        _LOGGER.debug(
+            f"Starting `keyboard_seqyence` with message=`{message}`, color=`{color}`, background=`{background}`, brightness=`{brightness}`, tail=`{tail}`, repeats=`{repeats}`, spacing=`{spacing}`, sleep=`{sleep}`"
+        )
+
+        # Get previous keyboard state
+        was = self._state["keyboard"].copy()
+        _LOGGER.debug(f"Previous keyboard state: {was}")
+
         # Parse the message
         keys = await self.async_parse_message(message)
 
@@ -315,6 +327,15 @@ class AIOChroma:
                     await self.async_effect_keyboard(effect=effect, spacing=spacing)
 
                     el += 1
+
+        # Recover previous state
+        _LOGGER.debug(f"Recovering keyboard state: {was}")
+        if was["state"]:
+            await self.async_effect_color(
+                target="keyboard", color=was["color"], brightness=was["brightness"]
+            )
+        else:
+            await self.async_effect_none(target="keyboard")
 
     ### <-- KEYBOARD
 
