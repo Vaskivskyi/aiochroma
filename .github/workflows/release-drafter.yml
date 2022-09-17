@@ -4,7 +4,7 @@ name: Draft a release note
 on:
   push:
     branches:
-      - dev
+      - main
   workflow_dispatch:
 
 jobs:
