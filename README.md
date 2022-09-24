@@ -7,6 +7,8 @@
 
 Up till now, it is mostly used for the [custom Chroma integration for Home Assistant](https://github.com/Vaskivskyi/ha-chroma). But you are welcome to use it for your purposes, as well as suggest new features which you would like to use.
 
+A short presentation of the features can be found in this [YouTube video](https://www.youtube.com/watch?v=ytdS9JUWSb4).
+
 ## Installation
 
 Installation of the latest release is available from PyPI:
