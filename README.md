@@ -48,7 +48,8 @@ Services: `AuraConnect`
 <tr><td>Keyboard</td><td>
 
 `BlackWidow Chroma`, `BlackWidow V3 Pro` ([link](https://amzn.to/3CUAy8X))<br/>
-`Huntsman Elite` ([link](https://amzn.to/3rQ36tJ))
+`Huntsman Elite` ([link](https://amzn.to/3rQ36tJ))<br />
+`Cynosa Chroma`
 
 </td></tr>
 
@@ -61,8 +62,8 @@ Services: `AuraConnect`
 
 `DeathAdder V2 Pro` ([link](https://amzn.to/3VrDAsg))<br/>
 `Mamba Tournament Edition` ([link](https://amzn.to/3RZBqgP))<br/>
-`Viper Ultimate` (+ `Mouse Dock`) ([link](https://amzn.to/3RXXt7w))
-
+`Viper Ultimate` (+ `Mouse Dock`) ([link](https://amzn.to/3RXXt7w))<br/>
+`Basilisk`
 </td></tr>
 
 <tr><td>Mousepad</td><td>
