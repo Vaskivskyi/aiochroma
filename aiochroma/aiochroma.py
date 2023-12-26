@@ -466,3 +466,9 @@ class AIOChroma:
         """Chroma versions"""
 
         return self._connection.identity
+
+    @property
+    def connected(self) -> bool:
+        """Connection state"""
+
+        return self._connection.connected
