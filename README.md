@@ -47,14 +47,15 @@ Services: `AuraConnect`
 
 <tr><td>Keyboard</td><td>
 
-`BlackWidow Chroma` (<a href="https://amzn.to/3hWc7QU" rel="nofollow sponsored" target="_blank">link</a>), `BlackWidow V3 Pro` (<a href="https://amzn.to/3i58M1Q" rel="nofollow sponsored" target="_blank">link</a>)<br/>
+`BlackWidow Chroma` (<a href="https://amzn.to/3hWc7QU" rel="nofollow sponsored" target="_blank">link</a>), `BlackWidow Elite`(<a href="https://amzn.to/3NFzSJy" rel="nofollow sponsored" target="_blank">link</a>), `BlackWidow V3 Pro` (<a href="https://amzn.to/3i58M1Q" rel="nofollow sponsored" target="_blank">link</a>)<br/>
 `Cynosa Chroma` (<a href="https://amzn.to/3VFbI2S" rel="nofollow sponsored" target="_blank">link</a>)<br />
-`Huntsman Elite` (<a href="https://amzn.to/3C8fhb1" rel="nofollow sponsored" target="_blank">link</a>)
+`Huntsman Elite` (<a href="https://amzn.to/3C8fhb1" rel="nofollow sponsored" target="_blank">link</a>), `Huntsman V2 Analog` (<a href="https://amzn.to/3YbKink" rel="nofollow sponsored" target="_blank">link</a>)
 
 </td></tr>
 
 <tr><td>Keypad</td><td>
 
+`Tartarus V2` (<a href="https://amzn.to/3RUYVuq" rel="nofollow sponsored" target="_blank">link</a>)
 
 </td></tr>
 
@@ -68,6 +69,7 @@ Services: `AuraConnect`
 
 <tr><td>Mousepad</td><td>
 
+`Base Station V2 Chroma` (<a href="https://amzn.to/3x7NxjS" rel="nofollow sponsored" target="_blank">link</a>)<br />
 `Firefly V2` (<a href="https://amzn.to/3FYiAm0" rel="nofollow sponsored" target="_blank">link</a>)<br />
 `Mouse Bungee V3 Chroma` (<a href="https://amzn.to/3ImsEbg" rel="nofollow sponsored" target="_blank">link</a>)
 
