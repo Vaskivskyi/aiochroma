@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name            = "aiochroma"
+version         = "1.0.0.dev0"
+license         = {text = "Apache-2.0"}
+requires-python = ">=3.9.0"
+readme          = "README.md"
+description     = "API wrapper for communication with Razer Chroma devices"
+authors         = [
+    { name="Yevhenii Vaskivskyi", email="yevhenii@vaskivskyi.com" },
+]
+classifiers     = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Software Development :: Libraries",
+]
+dependencies    = [
+    "aiohttp >=3.8.1",
+]
+
+[project.urls]
+"Source Code"   = "https://github.com/Vaskivskyi/aiochroma"
+"Bug Reports"   = "https://github.com/Vaskivskyi/aiochroma/issues"
+
+[tool.setuptools.packages.find]
+include = ["aiochroma*"]
