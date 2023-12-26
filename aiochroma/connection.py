@@ -8,8 +8,15 @@ from typing import Any, Callable
 
 import aiohttp
 
-from .const import CREDENTIALS, DEFAULT_PORT, DEFAULT_SLEEP, HEADERS, URL, URL_MAIN
-from .error import ChromaResultError
+from aiochroma.const import (
+    CREDENTIALS,
+    DEFAULT_PORT,
+    DEFAULT_SLEEP,
+    HEADERS,
+    URL,
+    URL_MAIN,
+)
+from aiochroma.error import ChromaError, ChromaResultError
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -35,6 +42,19 @@ class Connection:
         self._connected: bool = False
         self._sid: int | None = None
 
+    ### ------------------------
+    ### Service methods -->
+    ### ------------------------
+
+    def _mark_disconnected(self) -> None:
+        """Mark connection as disconnected."""
+
+        self._connected = False
+
+    ### ------------------------
+    ### <-- Service methods
+    ### ------------------------
+
     ### SEND REQUESTS ->
 
     async def async_request(
@@ -46,7 +66,10 @@ class Connection:
     ) -> dict[str, Any]:
         """Send a request"""
 
-        json_body = {}
+        # Check that we are connected
+        if not self._connected and endpoint != URL_MAIN:
+            if not await self.async_connect():
+                raise ChromaError("Cannot connect to Chroma SDK")
 
         url = URL.format(
             self._host,
@@ -55,17 +78,29 @@ class Connection:
         )
 
         try:
-            async with method(url=url, headers=HEADERS, data=payload, ssl=True) as r:
-                json_body = await r.json()
+            async with method(
+                url=url, headers=HEADERS, data=payload, ssl=True
+            ) as response:
+                responce_status = response.status
+                if responce_status == 404:
+                    raise ChromaError("Chroma SDK is not available")
 
-            if "result" in json_body and json_body["result"] != 0:
-                raise ChromaResultError(json_body["result"])
+                json_body = await response.json()
 
-            await self.async_sleep(interval)
+                if "result" in json_body and json_body["result"] != 0:
+                    raise ChromaResultError(json_body["result"])
 
-            return json_body
+                await self.async_sleep(interval)
+
+                return json_body
+
+        except aiohttp.ClientConnectorError as ex:
+            self._mark_disconnected()
+            raise ChromaError("Cannot connect to the Chroma SDK") from ex
+
         except Exception as ex:
-            raise ex
+            self._mark_disconnected()
+            raise ChromaError("Error communicating with the Chroma SDK") from ex
 
     async def async_delete(
         self,
