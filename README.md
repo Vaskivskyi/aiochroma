@@ -75,6 +75,7 @@ Services: `AuraConnect`
 
 `Base Station V2 Chroma` (<a href="https://amzn.to/3x7NxjS" rel="nofollow sponsored" target="_blank">link</a>)<br />
 `Firefly V2` (<a href="https://amzn.to/3FYiAm0" rel="nofollow sponsored" target="_blank">link</a>)<br />
+`Monitor Stand Chroma` (<a href="https://amzn.to/4lpKKKr" rel="nofollow sponsored" target="_blank">link</a>)<br />
 `Mouse Bungee V3 Chroma` (<a href="https://amzn.to/3ImsEbg" rel="nofollow sponsored" target="_blank">link</a>)
 
 </td></tr>
