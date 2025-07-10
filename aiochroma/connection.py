@@ -3,19 +3,13 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 
 import aiohttp
 
-from aiochroma.const import (
-    CREDENTIALS,
-    DEFAULT_PORT,
-    DEFAULT_SLEEP,
-    HEADERS,
-    URL,
-    URL_MAIN,
-)
+from aiochroma.const import CREDENTIALS, DEFAULT_PORT, DEFAULT_SLEEP, HEADERS, URL_MAIN
 from aiochroma.error import ChromaError, ChromaResultError
 
 _LOGGER = logging.getLogger(__name__)
@@ -38,7 +32,7 @@ class Connection:
             session if session else aiohttp.ClientSession()
         )
 
-        self._identity: dict[str, str] = ""
+        self._identity: dict[str, str] = {}
         self._connected: bool = False
         self._sid: int | None = None
 
@@ -71,21 +65,28 @@ class Connection:
             if not await self.async_connect():
                 raise ChromaError("Cannot connect to Chroma SDK")
 
-        url = URL.format(
-            self._host,
-            self._port,
-            endpoint if not self._sid else f"sid={self._sid}/{endpoint}",
-        )
+        if self._sid is None:
+            url = f"http://{self._host}:{self._port}/{endpoint}"
+        else:
+            url = f"http://{self._host}:{self._sid}/chromasdk/{endpoint}"
 
         try:
             async with method(
-                url=url, headers=HEADERS, data=payload, ssl=True
+                url=url, headers=HEADERS, data=payload, ssl=False
             ) as response:
                 responce_status = response.status
                 if responce_status == 404:
                     raise ChromaError("Chroma SDK is not available")
 
-                json_body = await response.json()
+                # Debug: Get raw response text first
+                raw_text = await response.text()
+                _LOGGER.debug(f"Raw response for {endpoint}: {raw_text}")
+                
+                try:
+                    json_body = json.loads(raw_text)
+                except (json.JSONDecodeError, ValueError) as json_ex:
+                    _LOGGER.error(f"Failed to parse JSON response for {endpoint}: {raw_text}")
+                    raise ChromaError(f"Invalid JSON response from Chroma SDK: {raw_text}") from json_ex
 
                 if "result" in json_body and json_body["result"] != 0:
                     raise ChromaResultError(json_body["result"])
@@ -182,7 +183,20 @@ class Connection:
         """Keep connection active"""
 
         result = await self.async_put("heartbeat")
-        return result["tick"]
+        
+        # Debug: Log the actual result to see what we're getting
+        _LOGGER.debug(f"Heartbeat result: {result}")
+        
+        # Check if result is a dict before trying to access it
+        if isinstance(result, dict):
+            if "tick" in result:
+                return result["tick"]
+            else:
+                _LOGGER.error(f"No 'tick' key in heartbeat response: {result}")
+                raise ChromaError("Invalid heartbeat response - missing 'tick' field")
+        else:
+            _LOGGER.error(f"Heartbeat response is not a dict: {type(result)} - {result}")
+            raise ChromaError(f"Invalid heartbeat response type: {type(result)}")
 
     @property
     def connected(self) -> bool:
@@ -191,13 +205,13 @@ class Connection:
         return self._connected
 
     @property
-    def sid(self) -> int:
+    def sid(self) -> Optional[int]:
         """Session ID"""
 
         return self._sid
 
     @property
-    def identity(self) -> str:
+    def identity(self) -> dict[str, str]:
         """API version"""
 
         return self._identity
