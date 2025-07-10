@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 from typing import Any, Callable, Optional
 
@@ -82,7 +83,6 @@ class Connection:
                 _LOGGER.debug(f"Raw response for {endpoint}: {raw_text}")
                 
                 try:
-                    import json
                     json_body = json.loads(raw_text)
                 except (json.JSONDecodeError, ValueError) as json_ex:
                     _LOGGER.error(f"Failed to parse JSON response for {endpoint}: {raw_text}")
