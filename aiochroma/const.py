@@ -2,7 +2,7 @@
 
 import re
 
-from .dataclass import Color, Key
+from aiochroma.dataclass import Color, Key
 
 CREDENTIALS = '{"title":"AIOChroma","description":"Async Python library for remote control of Razer Chroma","author":{"name":"Yevhenii Vaskivskyi","contact":"https://github.com/Vaskivskyi/aiochroma"},"device_supported":["keyboard","mouse","headset","mousepad","keypad","chromalink"],"category":"application"}'
 
@@ -12,7 +12,7 @@ DEFAULT_BRIGHTNESS = 255
 DEFAULT_COLOR = Color(255, 255, 0)
 
 HEADERS = {
-    "Host": "chromasdk.io",
+    "Host": "localhost",
     "content-type": "application/json",
 }
 
@@ -65,9 +65,9 @@ KEYBOARD_SEQUENCE_LOAD_ALPHA_CCW = "1qazxcvbnm,./']=-098765432"
 
 KEYREG = re.compile("\{[A-Za-z0-9./*\-\+]+\}")
 
-DEFAULT_PORT = 54236
+DEFAULT_PORT = 54235
 
-URL = "https://{}:{}/{}"
+URL = "http://{}:{}/{}"
 URL_MAIN = "razer/chromasdk"
 
 ### KEY POSITIONS -->
