@@ -14,17 +14,17 @@ jobs:
 
     steps:
     - name: Checkout the repository
-      uses: actions/checkout@v4.1.1
+      uses: actions/checkout@v4.2.2
       with:
         ref: ${{ github.event.release.target_commitish }}
 
     - name: Setup Python ${{ env.DEFAULT_PYTHON }}
-      uses: actions/setup-python@v5.0.0
+      uses: actions/setup-python@v5.6.0
       with:
         python-version: ${{ env.DEFAULT_PYTHON }}
 
     - name: Cache pip dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
